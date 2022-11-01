@@ -22,12 +22,12 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
+    <section id="main-content">
+          <section class="wrapper">
             <!-- /.row -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
+            <div class="row mt">
+                <div class="col-md-12">
+                    <div class="content-panel">
                         <div class="card-header">
                             <h3 class="card-title">Arsip Surat</h3>
                             <a>Berikut ini adalah surat-surat yang telah terbit dan diarsipkan.
@@ -45,32 +45,27 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">NIDN</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Prodi</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">Tanggal Lahir</th>
+                                    <th scope="col">Nomor Surat</th>
+                                    <th scope="col">Kategori</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Waktu Pengarsipan</th>
                                     <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                    if ($dosen) :
-                                        $no = 1;
-                                        foreach($dosen as $d): ?>
+                                    if ($arsip) :
+                                        foreach($arsip as $a): ?>
                                             <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td><?= $d->DSNNIDN ?></td>
-                                                <td><?= $d->DSNNAMA ?></td>
-                                                <td><?= $d->nama_prodi ?></td>
-                                                <td><?= $d->DSNKOTA ?></td>
-                                                <td><?= $d->DSNTGLLHR ?></td>
+                                                <td><?= $a->nomor_surat ?></td>
+                                                <td><?= $a->nama_kategori ?></td>
+                                                <td><?= $a->judul_surat ?></td>
+                                                <td><?= $a->waktu_arsip ?></td>
                                                 <td class="d-flex justify-content-center">
-                                                <a href="<?= base_url('dashboard/dosen/'.$d->id.'/edit') ?>"
+                                                <a href="<?= base_url('dashboard/dosen/'.$a->id.'/edit') ?>"
                                                     class="btn btn-sm btn-outline-warning mr-1">Edit</a>
                                                 <a href="#"
-                                                    data-href="<?= base_url('dashboard/dosen/'.$d->id.'/delete') ?>"
+                                                    data-href="<?= base_url('dashboard/dosen/'.$a->id.'/delete') ?>"
                                                     onclick="confirmToDelete(this)"
                                                     class="btn btn-sm btn-outline-danger">Delete</a>
                                                 </td>

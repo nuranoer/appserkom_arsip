@@ -7,7 +7,7 @@ use App\Models\Arsip;
 use App\Models\Kategori;
 use Exception;
 
-class ProdiController extends BaseController
+class ArsipController extends BaseController
 {
     private Arsip $arsip;
 
@@ -21,7 +21,7 @@ class ProdiController extends BaseController
     {
         $data['arsip'] = $this->arsip->get_data();
         $data['title'] = 'List Arsip';
-		//echo view('dashboard/prodi/index', $data);
+		echo view('arsip/data', $data);
     }
 
     public function new()
