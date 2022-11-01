@@ -14,9 +14,9 @@ class Arsip extends Migration
 				'constraint'     => 50,
                 'null'           => false,
 			],
-			'kategori_surat'       => [
+			'id_kategori'       => [
 				'type'           => 'VARCHAR',
-				'constraint'     => '225',
+				'constraint'     => '10',
                 'null'           => true,
 			],
             'judul_surat'       => [
