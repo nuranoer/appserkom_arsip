@@ -1,33 +1,24 @@
-
-  <body>
-
-<section id="container" >
-    <!-- **********************************************************************************************************************************************************
-    TOP BAR CONTENT & NOTIFICATIONS
-    *********************************************************************************************************************************************************** -->
-    <!--header start-->
-    <header class="header black-bg">
-            <div class="sidebar-toggle-box">
-                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+<body class="vertical  light  ">
+    <div class="wrapper">
+      <nav class="topnav navbar navbar-light">
+        <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
+          <i class="fe fe-menu navbar-toggler-icon"></i>
+        </button>
+        <form class="form-inline mr-auto searchform text-muted">
+          <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search">
+        </form>
+        <ul class="nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="avatar avatar-sm mt-2">
+                <img src="<?= base_url('assets') ?>/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Activities</a>
             </div>
-          <!--logo start-->
-          <a href="/" class="logo"><b>WEBSITE PENGARSIPAN SURAT</b></a>
-          <!--logo end-->
-          <div class="nav notify-row" id="top_menu">
-              <!--  notification start -->
-              <ul class="nav top-menu">
-                  <li class="dropdown">
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                          <i class="fa fa-tasks"></i>
-                          <span class="badge bg-theme">4</span>
-                      </a>
-                  </li>                  
-              </ul>
-              <!--  notification end -->
-          </div>
-          <div class="top-menu">
-              <ul class="nav pull-right top-menu">
-                  <li><a class="logout" href="login.html">Logout</a></li>
-              </ul>
-          </div>
-      </header>
+          </li>
+        </ul>
+      </nav>

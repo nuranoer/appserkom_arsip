@@ -1,126 +1,123 @@
 <?= $this->extend('arsip/layouts/app'); ?>
 
-<?= $this->section('css') ?>
-<!-- DataTables -->
-<link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-<?= $this->endSection() ?>
-
 <?= $this->section('content'); ?>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
+<main role="main" class="main-content">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1><?= $title ?></h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section id="main-content">
-          <section class="wrapper">
-            <!-- /.row -->
-            <div class="row mt">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <h2 class="mb-2 page-title">Data Surat</h2>
+              <p class="card-text">Berikut ini adalah surat-surat yang telah terbit dan diarsipkan <br>
+                Klik "Lihat" pada kolom aksi untuk menampilkan surat</p>
+              <div class="row my-4">
+                <!-- Small table -->
                 <div class="col-md-12">
-                    <div class="content-panel">
-                        <div class="card-header">
-                            <h3 class="card-title">Arsip Surat</h3>
-                            <a>Berikut ini adalah surat-surat yang telah terbit dan diarsipkan.
-                                <br> Klik "Lihat" pada kolom aksi untuk menampilkan surat.
-                            </a>
-                            <div class="float-right">
-                                <a href="<?= base_url('/dashboard/dosen/new'); ?>" class="btn btn-sm btn-primary"><i
-                                        class="fas fa-plus"></i> Tambah</a>
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <?= $this->include('arsip/layouts/components/validation_checker'); ?>
-                            <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Nomor Surat</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Judul</th>
-                                    <th scope="col">Waktu Pengarsipan</th>
-                                    <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <!-- table -->
+                      <table class="table datatables" id="dataTable-1">
+                      <thead>
+                          <tr>
+                            <th></th>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nomor Surat</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Waktu Pengarsipan</th>
+                            <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php
                                     if ($arsip) :
+                                        $no = 1;
                                         foreach($arsip as $a): ?>
-                                            <tr>
-                                                <td><?= $a->nomor_surat ?></td>
-                                                <td><?= $a->nama_kategori ?></td>
-                                                <td><?= $a->judul_surat ?></td>
-                                                <td><?= $a->waktu_arsip ?></td>
-                                                <td class="d-flex justify-content-center">
-                                                <a href="<?= base_url('dashboard/dosen/'.$a->id.'/edit') ?>"
-                                                    class="btn btn-sm btn-outline-warning mr-1">Edit</a>
-                                                <a href="#"
-                                                    data-href="<?= base_url('dashboard/dosen/'.$a->id.'/delete') ?>"
-                                                    onclick="confirmToDelete(this)"
-                                                    class="btn btn-sm btn-outline-danger">Delete</a>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                <?php else : ?>
-                                <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
+                          <tr?>
+                            <td>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label"></label>
+                              </div>
+                            </td>
+                                <td><?= $no++ ?></td>
+                                <td><?= $a->nomor_surat ?></td>
+                                <td><?= $a->nama_kategori ?></td>
+                                <td><?= $a->judul_surat ?></td>
+                                <td><?= $a->waktu_arsip ?></td>
+                                <td class="d-flex justify-content-center mb-2">
+                                    <a href="#"
+                                        data-href="<?= base_url('dashboard/hero/'.$a->nomor_surat.'/delete') ?>"
+                                        onclick="confirmToDelete(this)"
+                                        class="btn mb-2 btn-outline-danger">Delete</a>
+                                    <a href="#"
+                                        data-href="<?= base_url('dashboard/hero/'.$a->nomor_surat.'/delete') ?>"
+                                        onclick="confirmToDelete(this)"
+                                        class="btn mb-2 btn-outline-warning">Unduh</a>
+                                    <a href="#"
+                                        data-href="<?= base_url('dashboard/hero/'.$a->nomor_surat.'/delete') ?>"
+                                        onclick="confirmToDelete(this)"
+                                        class="btn mb-2 btn-outline-primary">Lihat>></a>
+                                </td>
+                          </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                        <?php else : ?>
+                    <?php endif; ?>
+                      </table>
                     </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
+                  </div>
+                </div> <!-- simple table -->
+              </div> <!-- end section -->
+            </div> <!-- .col-12 -->
+          </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+   
+      <?= $this->endSection() ?>
 
-<div id="confirm-dialog" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2 class="h2">Are you sure?</h2>
-                <p>The data will be deleted and lost forever</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#" role="button" id="delete-button" class="btn btn-danger">Delete</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
+      <?= $this->section('js') ?>
+    </div> <!-- .wrapper -->
+    <script src="<?= base_url('assets') ?>/js/jquery.min.js"></script>
+    <script src="<?= base_url('assets') ?>/js/popper.min.js"></script>
+    <script src="<?= base_url('assets') ?>/js/moment.min.js"></script>
+    <script src="<?= base_url('assets') ?>/js/bootstrap.min.js"></script>
+    <script src="<?= base_url('assets') ?>/js/simplebar.min.js"></script>
+    <script src='<?= base_url('assets') ?>/js/daterangepicker.js'></script>
+    <script src='<?= base_url('assets') ?>/js/jquery.stickOnScroll.js'></script>
+    <script src="<?= base_url('assets') ?>/js/tinycolor-min.js"></script>
+    <script src="<?= base_url('assets') ?>/js/config.js"></script>
+    <script src='<?= base_url('assets') ?>/js/jquery.dataTables.min.js'></script>
+    <script src='<?= base_url('assets') ?>/js/dataTables.bootstrap4.min.js'></script>
 
-<!-- /.content-wrapper -->
-<?= $this->endSection(); ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#user-table').DataTable1({
+                "processing": true,
+                "serverSide": true,
+                "order": [],
+                "ajax": {
+                    "url": "<?php echo site_url('user/ajaxList') ?>",
+                    "type": "POST"
+                },
+                "columnDefs": [{
+                    "targets": [],
+                    "orderable": false,
+                }, ],
+            });
+        });
+    </script>
+    <script src="<?= base_url('assets') ?>/js/apps.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-<?= $this->section('js') ?>
-<script>
-    function confirmToDelete(el) {
-        $("#delete-button").attr("href", el.dataset.href);
-        $("#confirm-dialog").modal('show');
-    }
-
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-</script>
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-56159088-1');
+    </script>
+  </body>
+</html>
 <?= $this->endSection() ?>

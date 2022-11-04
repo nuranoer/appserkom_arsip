@@ -25,7 +25,7 @@ class Arsip extends Migration
                 'null'           => true,
 			],
             'tanggal_surat'       => [
-                'type'           => 'DATE',
+                'type'           => 'DATETIME',
                 'null'           => true,
             ],
             'file_surat'       => [
