@@ -67,6 +67,9 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="<?= base_url('/') ?>"
+                                    class="btn btn-warning">Kembali</a>
+
                             </div>
                         </form>
                     </div>

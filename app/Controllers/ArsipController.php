@@ -97,7 +97,10 @@ class ArsipController extends BaseController
     public function lihat($id)
     {
         $arsip = new Arsip();
-        $data = $arsip->find($id);
+        $data['arsip'] = $arsip->detail($id);
+        $data['title'] = 'Lihat Arsip';
+		echo view('arsip/lihat', $data);
+
         
     }
 
@@ -127,9 +130,9 @@ class ArsipController extends BaseController
     }
 
     
-    public function delete($id){
+    public function delete($id_arsip){
         try {
-            $this->arsip->delete($id);
+            $this->arsip->delete($id_arsip);
         } catch (Exception $e) {
             return redirect()->to('/')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

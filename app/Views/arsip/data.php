@@ -61,15 +61,13 @@
                                                 <td><?= $a->waktu_arsip ?></td>
                                                 <td class="d-flex justify-content-center">
                                                 <a href="#"
-                                                    data-href="<?= base_url('arsip/'.$a->nomor_surat.'/delete') ?>"
+                                                    data-href="<?= base_url('arsip/delete/'.$a->id_surat) ?>"
                                                     onclick="confirmToDelete(this)"
                                                     class="btn mb-2 btn-outline-danger">Delete</a>
                                                 <a href="<?= base_url('arsip/download/'.$a->id_surat) ?>"
                                                     class="btn mb-2 btn-outline-warning mr-1">Unduh</a>
-                                                <a href="#"
-                                                    data-href="<?= base_url('dashboard/hero/'.$a->nomor_surat.'/delete') ?>"
-                                                    onclick="confirmToDelete(this)"
-                                                    class="btn mb-2 btn-outline-primary">Lihat>></a>                                                </td>
+                                                <a href="<?= base_url('arsip/lihat/'.$a->id_surat) ?>"
+                                                    class="btn mb-2 btn-outline-primary mr-1">Lihat >></a>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
