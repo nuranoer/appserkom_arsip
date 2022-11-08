@@ -28,36 +28,36 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="<?= base_url('dashboard/dosen/'. $data->id .'/update') ?>" method="post">
-                            <input type="hidden" name="id" value="<?= $data->id ?>" />
+                        <form action="<?= base_url('arsip/update/'.$arsip-> id_surat .'') ?>" method="post">
+                            <input type="hidden" name="id_surat" value="<?= $arsip->id_surat ?>" />
                             <div class="card-body">
                                 <?= $this->include('layouts/components/validation_checker'); ?>
                                 <div class="form-group">
-                                    <label>NIDN</label>
-                                    <input type="text" name="DSNNIDN" value="<?= $data->DSNNIDN ?>" class="form-control">
+                                    <label>Nomor Surat</label>
+                                    <input type="text" name="nomor_surat" value="<?= $arsip->nomor_surat ?>" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama</label>
-                                    <input type="text" name="DSNNAMA" value="<?= $data->DSNNAMA ?>" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label>Prodi</label>
-                                    <select name="PRODIID" id="PRODIID" class="form-control">
+                                    <label>Kategori</label>
+                                    <select name="id_kategori" id="id_kategori" class="form-control">
                                         <option value="" disabled selected>Silahkan Pilih</option>
-                                        <?php foreach($prodi as $p): ?>
-                                            <option value="<?= $p->PRODIID ?>" <?= $data->PRODIID == $p->PRODIID ? 'selected' : '' ?>><?= $p->PRODINAMA ?></option>
+                                        <?php foreach($kategori as $k): ?>
+                                            <option value="<?= $k->id_kategori ?>" <?= $arsip->id_kategori == $k->id_kategori ? 'selected' : '' ?>><?= $k->nama_kategori ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-
                                 <div class="form-group">
-                                    <label>Kota</label>
-                                    <input type="text" name="DSNKOTA" value="<?= $data->DSNKOTA ?>" class="form-control">
+                                    <label>Judul</label>
+                                    <input type="text" name="judul_surat" value="<?= $arsip->judul_surat ?>" class="form-control">
                                 </div>
-                                <div class="form-group">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" name="DSNTGLLHR" value="<?= $data->DSNTGLLHR ?>" class="form-control">
-                                </div>                            
+                                <div class="mb-3">
+                                <label for="formFile" class="form-label">File Surat (PDF)</label>
+                                <input class="form-control file_surat" name="file_surat" value="<?= $arsip->file_surat ?>" type="file" id="file_surat">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                </div>           
+                                
+
                             </div>
                             <!-- /.card-body -->
 

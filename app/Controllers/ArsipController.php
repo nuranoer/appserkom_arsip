@@ -109,7 +109,7 @@ class ArsipController extends BaseController
     {
         $model = $this->arsip;
         $kategori = new Kategori();
-        $data['data'] = $model->where('id', $id)->first();
+        $data['arsip'] = $model->where('id_surat', $id)->first();
         $data['title'] = 'Update Data';
         $data['kategori'] = $kategori->findAll();
         
@@ -119,7 +119,7 @@ class ArsipController extends BaseController
     public function update($id)
     {
         $file = $this->request->getFile('file_surat');
-        
+
         $namaFile = $file->getName();
         $file->move('uploads', $namaFile);
         $data = [
@@ -134,7 +134,7 @@ class ArsipController extends BaseController
         }
 
         try {
-            $this->dosen->protect(false)->update($id, $data);
+            $this->arsip->protect(false)->update($id, $data);
         } catch (Exception $e) {
             return redirect()->to('arsip/edit/'. $id .'')->withInput()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

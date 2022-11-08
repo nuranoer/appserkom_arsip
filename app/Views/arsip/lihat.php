@@ -50,7 +50,7 @@
                     class="btn mb-2 btn-outline-warning mr-1">Kembali</a>
                 <a href="<?= base_url('arsip/download/'.$filepdf->id_surat) ?>"
                     class="btn mb-2 btn-outline-primary mr-1">Unduh</a>
-                <a href="<?= base_url('arsip/lihat/'.$filepdf->id_surat) ?>"
+                <a href="<?= base_url('arsip/edit/'.$filepdf->id_surat) ?>"
                     class="btn mb-2 btn-outline-primary mr-1">Edit/ganti file</a>
             </div>
         </div>

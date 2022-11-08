@@ -40,6 +40,8 @@ $routes->get('about', 'Home::about');
 $routes->add('arsip/new', 'ArsipController::new');
 $routes->add('arsip/store', 'ArsipController::save');
 $routes->get('arsip/download/(:any)', 'ArsipController::download/$1');
+$routes->add('arsip/edit/(:any)', 'ArsipController::edit/$1');
+$routes->add('arsip/update/(:any)', 'ArsipController::update/$1');
 $routes->get('arsip/lihat/(:any)', 'ArsipController::lihat/$1');
 $routes->get('arsip/delete/(:any)', 'ArsipController::delete/$1');
 
