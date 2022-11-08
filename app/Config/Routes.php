@@ -36,6 +36,10 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'ArsipController::index');
+$routes->add('arsip/new', 'ArsipController::new');
+$routes->add('arsip/store', 'ArsipController::save');
+$routes->get('arsip/download/(:any)', 'ArsipController::download/$1');
+$routes->get('arsip/(:segment)/delete', 'ArsipController::delete/$1');
 
 /*
  * --------------------------------------------------------------------

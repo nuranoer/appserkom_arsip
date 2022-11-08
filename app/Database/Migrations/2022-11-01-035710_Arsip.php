@@ -24,15 +24,13 @@ class Arsip extends Migration
 				'constraint'     => '225',
                 'null'           => true,
 			],
-            'tanggal_surat'       => [
-                'type'           => 'DATETIME',
-                'null'           => true,
-            ],
+            
             'file_surat'       => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '225',
                 'null'           => true,
             ],
+            'waktu_arsip DATETIME DEFAULT CURRENT_TIMESTAMP'
 		]);
 
 		// set Primary Key
