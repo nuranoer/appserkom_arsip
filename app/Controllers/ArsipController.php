@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\Arsip;
 use App\Models\Kategori;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use Exception;
 
 class ArsipController extends BaseController
@@ -96,37 +97,49 @@ class ArsipController extends BaseController
     }
     public function lihat($id)
     {
-        $arsip = new Arsip();
-        $data['arsip'] = $arsip->detail($id);
-        $data['title'] = 'Lihat Arsip';
-		echo view('arsip/lihat', $data);
+       $arsip = new Arsip();
+       $filepdf = $arsip->detail($id);
+       $data = array('filepdf' => $filepdf);
+       return view('arsip/lihat', $data);
 
         
     }
 
-    public function store()
+    public function edit($id)
+    {
+        $model = $this->arsip;
+        $kategori = new Kategori();
+        $data['data'] = $model->where('id', $id)->first();
+        $data['title'] = 'Update Data';
+        $data['kategori'] = $kategori->findAll();
+        
+        echo view('arsip/edit', $data);
+    }
+
+    public function update($id)
     {
         $file = $this->request->getFile('file_surat');
-        $file->move(ROOTPATH . 'public/uploads');
+        
+        $namaFile = $file->getName();
+        $file->move('uploads', $namaFile);
         $data = [
-            'nomor_surat' => $this->request->getPost('nomor_surat'),
-            'id_kategori' => $this->request->getPost('id_kategori'),
-            'judul_surat' => $this->request->getPost('judul_surat'),
-            'file_surat' => $file->getName(),
+            'nomor_surat' => $this->request->getVar('nomor_surat'),
+            'id_kategori' => $this->request->getVar('id_kategori'),
+            'judul_surat' => $this->request->getVar('judul_surat'),
+            'file_surat' => $namaFile
         ];
 
-
         if (!$this->arsip->validate($data)) {
-            return redirect()->to('arsip/new')->withInput()->with('errors', $this->arsip->errors());
+            return redirect()->to('arsip/edit/'. $id .'')->withInput()->with('errors', $this->arsip->errors());
         }
 
         try {
-            $this->arsip->protect(false)->insert($data);
+            $this->dosen->protect(false)->update($id, $data);
         } catch (Exception $e) {
-            return redirect()->to('arsip/new')->withInput()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            return redirect()->to('arsip/edit/'. $id .'')->withInput()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
 
-        return redirect()->to('/')->with('success', 'Berhasil menambahkan data');
+        return redirect()->to('/')->with('success', 'Berhasil mengupdate data');
     }
 
     

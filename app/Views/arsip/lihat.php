@@ -21,30 +21,36 @@
                         <div class="card-body">
                             <div class="table">
                                 <table class="table table-bordered">
-                                <?php
-                                    if ($arsip) :
-                                        foreach($arsip as $a): ?>
-                                            <tr>
-                                                <td><?= $a->nomor_surat ?></td>
-                                                <td><?= $a->nama_kategori ?></td>
-                                                <td><?= $a->judul_surat ?></td>
-                                                <td><?= $a->waktu_arsip ?></td>
-                                                <td class="d-flex justify-content-center">
-                                                
-                                            </tr>
-                                            <?php endforeach; ?>
+                                    <tr>
+                                        <th>Nomor Surat</th>
+                                        <td><?= $filepdf->nomor_surat ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Judul Surat</th>
+                                        <td><?= $filepdf->judul_surat ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <td><?= $filepdf->nama_kategori ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Waktu Pengarsipan</th>
+                                        <td><?= $filepdf->waktu_arsip ?></td>
+                                    </tr>
+                                    
                                 </table>
-                                <?php else : ?>
-                                <?php endif; ?>
+                                
+
 
                             </div>
+                            <iframe src="<?= base_url('uploads/'.$filepdf->file_surat) ?>" height="500" width="100%" title="Iframe Example"></iframe>
                     </div>
                 </div>
-                <a href="<?= base_url('arsip/download/'.$a->id_surat) ?>"
+                <a href="<?= base_url('/') ?>"
                     class="btn mb-2 btn-outline-warning mr-1">Kembali</a>
-                <a href="<?= base_url('arsip/lihat/'.$a->id_surat) ?>"
+                <a href="<?= base_url('arsip/download/'.$filepdf->id_surat) ?>"
                     class="btn mb-2 btn-outline-primary mr-1">Unduh</a>
-                <a href="<?= base_url('arsip/lihat/'.$a->id_surat) ?>"
+                <a href="<?= base_url('arsip/lihat/'.$filepdf->id_surat) ?>"
                     class="btn mb-2 btn-outline-primary mr-1">Edit/ganti file</a>
             </div>
         </div>
