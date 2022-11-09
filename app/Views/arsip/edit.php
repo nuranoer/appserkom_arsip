@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="mb-3">
                                 <label for="formFile" class="form-label">File Surat (PDF)</label>
-                                <input class="form-control file_surat" name="file_surat" value="<?= $arsip->file_surat ?>" type="file" id="file_surat">
+                                <input class="form-control file_surat" accept=".pdf" name="file_surat" value="<?= $arsip->file_surat ?>" type="file" id="file_surat">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

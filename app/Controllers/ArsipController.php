@@ -115,18 +115,61 @@ class ArsipController extends BaseController
         
         echo view('arsip/edit', $data);
     }
+    // public function update($id)
+    // {
+    //     $model = new Arsip(); 
+ 
+    // $rules = [
+    //     'nomor_surat' => 'required',
+    //     'id_kategori' => 'required',
+    //     'judul_surat' => 'required',
+    // ];
+    // $id =  $this->request->getVar('id');
+ 
+    // if($this->validate($rules)){
+    //     $namaFile = $this->request->getVar('oldFile');
+    //     if(isset($_FILES) && @$_FILES['file_surat']['error'] != '4') {
+    //         if($file_surat = $this->request->getFile('file_surat')) {
+    //             if (! $file_surat->isValid()) {
+    //                 throw new \RuntimeException($file_surat->getErrorString().'('.$file_surat->getError().')');
+    //             } else {
+    //                 $file_surat->move('uploads');
+    //                 $namaFile = $file_surat->getName();
+    //             }
+    //         }
+    //     }
+ 
+    //     $data = [
+    //         'nomor_surat' => $this->request->getVar('nomor_surat'),
+    //         'id_kategori' => $this->request->getVar('id_kategori'),
+    //         'judul_surat' => $this->request->getVar('judul_surat'),
+    //         'image' => $namaFile
+    //     ];
+         
+    //     $model->update($id, $data);
+ 
+    //     return redirect()->to(base_url('/'));
+ 
+    // } else {
+ 
+    //     $data['arsip'] = $model->get_data($id);
+ 
+    //     $data['validation'] = $this->validator;
+    //     $data['title'] = 'Update Arsip';
+    //     $data['menu'] = 'arsip';
+    //     return view('arsip/edit', $data);
+    // }
+    // }
+
 
     public function update($id)
     {
-        $file = $this->request->getFile('file_surat');
-
-        $namaFile = $file->getName();
-        $file->move('uploads', $namaFile);
+        
         $data = [
             'nomor_surat' => $this->request->getVar('nomor_surat'),
             'id_kategori' => $this->request->getVar('id_kategori'),
             'judul_surat' => $this->request->getVar('judul_surat'),
-            'file_surat' => $namaFile
+        
         ];
 
         if (!$this->arsip->validate($data)) {

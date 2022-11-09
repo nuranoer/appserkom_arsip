@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="mb-3">
                                 <label for="formFile" class="form-label">File Surat (PDF)</label>
-                                <input class="form-control" name="file_surat" value="<?= old('file_surat') ?>" type="file" id="file_surat">
+                                <input class="form-control" name="file_surat" accept=".pdf" value="<?= old('file_surat') ?>" type="file" id="file_surat">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
